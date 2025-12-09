@@ -1,0 +1,4 @@
+zone "portal.br"{
+    type master;
+    file "/etc/bind/db.francisco.br";
+};

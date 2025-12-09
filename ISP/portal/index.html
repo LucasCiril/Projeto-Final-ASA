@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HLTV — Estadísticas & Partidas (Inspirado)</title>
+  <style>
+    /* Reset */
+    :root{
+      --bg:#0b0d10;
+      --card:#0f1316;
+      --muted:#9aa4ad;
+      --accent:#f2b705;
+      --accent-2:#00b3ff;
+      --text:#e6eef3;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#071019);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+
+    header{
+      display:flex;align-items:center;gap:20px;padding:18px 28px;border-bottom:1px solid rgba(255,255,255,0.03);
+      position:sticky;top:0;background:linear-gradient(180deg,rgba(11,13,16,0.9),rgba(11,13,16,0.6));backdrop-filter:blur(6px);z-index:20
+    }
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo .badge{font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;font-size:20px}
+    .search{margin-left:auto;display:flex;gap:8px;align-items:center}
+    .search input{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;color:var(--text);min-width:220px}
+
+    main{max-width:1200px;margin:28px auto;padding:0 18px;display:grid;grid-template-columns:1fr 340px;gap:20px}
+
+    /* Left column */
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03)}
+    .matches .match{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:8px;margin-bottom:10px;background:linear-gradient(180deg,rgba(255,255,255,0.015),transparent)}
+    .teams{display:flex;gap:12px;align-items:center}
+    .team{display:flex;gap:8px;align-items:center}
+    .team .name{font-weight:600}
+    .vs{color:var(--muted);font-size:13px}
+    .time{color:var(--muted);font-size:13px}
+
+    /* Right column */
+    .side-section{display:flex;flex-direction:column;gap:12px}
+    .mini-list{display:flex;flex-direction:column;gap:8px}
+
+    footer{max-width:1200px;margin:28px auto;color:var(--muted);font-size:14px;padding:0 18px}
+
+    /* Responsive */
+    @media (max-width:980px){main{grid-template-columns:1fr;}
+      .search input{min-width:120px}
+    }
+
+    /* small utilities */
+    .badge-mini{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-weight:600}
+    .pill{padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);font-size:13px}
+
+    /* simple table */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="badge">HLTV</div>
+      <div style="color:var(--muted);font-size:14px">Stats & Matches — (versão inspirada)</div>
+    </div>
+
+    <nav style="margin-left:14px;display:flex;gap:12px;align-items:center">
+      <a class="pill" href="#">Partidas</a>
+      <a class="pill" href="#">Times</a>
+      <a class="pill" href="#">Jogadores</a>
+      <a class="pill" href="#">Rankings</a>
+    </nav>
+
+    <div class="search">
+      <input id="q" placeholder="Pesquisar partidas, times ou jogadores" />
+      <button onclick="search()" class="badge-mini">Buscar</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="card">
+        <h3 style="margin:0 0 10px 0">Partidas ao vivo / próximas</h3>
+        <div class="matches" id="matches">
+          <!-- lista preenchida por JS --></div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3 style="margin:0 0 10px 0">Resultados recentes</h3>
+        <div id="recent" class="mini-list"></div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3 style="margin:0 0 10px 0">Estatísticas rápidas</h3>
+        <table>
+          <thead><tr><th>Top jogador</th><th>K/D</th><th>Último torneio</th></tr></thead>
+          <tbody id="stats">
+            <!-- preenchido via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside>
+      <div class="side-section">
+        <div class="card">
+          <h4 style="margin:0 0 8px 0">Próximos eventos</h4>
+          <div class="mini-list" id="events"></div>
+        </div>
+
+        <div class="card">
+          <h4 style="margin:0 0 8px 0">Times em alta</h4>
+          <div id="topTeams" class="mini-list"></div>
+        </div>
+
+        <div class="card">
+          <h4 style="margin:0 0 8px 0">Links úteis</h4>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <a href="#">Calendário</a>
+            <a href="#">Rankings</a>
+            <a href="#">Streams</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    Esta página é uma interface inspirada no site HLTV.org feita para fins educativos. Todo o conteúdo exibido abaixo é fictício.
+  </footer>
+
+  <script>
+    // Dados de exemplo — personalize antes de usar em produção
+    const sampleMatches = [
+      {id:1, time:'12:30', teamA:{name:'Team Alpha', country:'BR'}, teamB:{name:'Rival Squad', country:'SE'}, status:'Ao vivo'},
+      {id:2, time:'15:00', teamA:{name:'Lendas', country:'PT'}, teamB:{name:'NeoStars', country:'US'}, status:'A iniciar'},
+      {id:3, time:'18:00', teamA:{name:'Fenix', country:'RU'}, teamB:{name:'Zenith', country:'KR'}, status:'A iniciar'}
+    ];
+
+    const sampleRecent = [
+      {match:'Team Alpha 2-1 Rival Squad', date:'Ontem'},
+      {match:'Lendas 0-2 NeoStars', date:'2 dias atrás'}
+    ];
+
+    const sampleStats = [
+      {player:'Zeus', kd:'1.42', event:'Major Cup'},
+      {player:'Fallen', kd:'1.30', event:'Regional Masters'}
+    ];
+
+    const sampleEvents = [
+      {title:'Major Cup — Fase de Grupos', date:'2026-01-18'},
+      {title:'Regional Masters', date:'2026-02-05'}
+    ];
+
+    const sampleTopTeams = ['Team Alpha','NeoStars','Zenith','Fenix'];
+
+    function render(){
+      const mEl = document.getElementById('matches');
+      mEl.innerHTML = '';
+      for(const m of sampleMatches){
+        const el = document.createElement('div'); el.className='match';
+        el.innerHTML = `
+          <div class="teams">
+            <div class="team"><div class="logo" style="width:36px;height:36px;border-radius:6px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:700">${m.teamA.name.slice(0,2)}</div><div class="name">${m.teamA.name}</div></div>
+            <div style="margin:0 12px" class="vs">vs</div>
+            <div class="team"><div class="logo" style="width:36px;height:36px;border-radius:6px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:700">${m.teamB.name.slice(0,2)}</div><div class="name">${m.teamB.name}</div></div>
+          </div>
+          <div style="text-align:right">
+            <div class="time">${m.time}</div>
+            <div class="pill" style="margin-top:6px">${m.status}</div>
+          </div>
+        `;
+        el.onclick = ()=>openMatch(m.id);
+        mEl.appendChild(el);
+      }
+
+      const rEl = document.getElementById('recent'); rEl.innerHTML='';
+      for(const r of sampleRecent){
+        const d = document.createElement('div'); d.className='badge-mini'; d.textContent = `${r.match} — ${r.date}`; rEl.appendChild(d);
+      }
+
+      const sEl = document.getElementById('stats'); sEl.innerHTML='';
+      for(const s of sampleStats){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${s.player}</td><td>${s.kd}</td><td>${s.event}</td>`;
+        sEl.appendChild(tr);
+      }
+
+      const eEl = document.getElementById('events'); eEl.innerHTML='';
+      for(const e of sampleEvents){ const node=document.createElement('div'); node.className='pill'; node.textContent = `${e.title} — ${e.date}`; eEl.appendChild(node); }
+
+      const tEl = document.getElementById('topTeams'); tEl.innerHTML='';
+      for(const t of sampleTopTeams){ const node=document.createElement('div'); node.className='badge-mini'; node.textContent=t; tEl.appendChild(node); }
+    }
+
+    function openMatch(id){
+      alert('Abrir visão da partida (id='+id+'). Esta é uma demo local.');
+    }
+
+    function search(){
+      const q = document.getElementById('q').value.toLowerCase();
+      const results = [];
+      for(const m of sampleMatches){ if(m.teamA.name.toLowerCase().includes(q) || m.teamB.name.toLowerCase().includes(q)) results.push(m); }
+      if(results.length===0) return alert('Nenhum resultado (demo).');
+      alert('Encontrado '+results.length+' partidas.');
+    }
+
+    // inicializa
+    render();
+  </script>
+</body>
+</html>

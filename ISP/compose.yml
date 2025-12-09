@@ -1,0 +1,25 @@
+services:
+  dns:
+    build: ./conf-dns
+    container_name: dns-server
+    image: dns-server:pop
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+
+  portal:
+    build: ./portal
+    container_name: portal
+    image: portal:pop
+
+  proxy:
+    build: ./proxy
+    container_name: proxy
+    image: server-proxy:pop
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+    volumes:
+      - ./proxy/certs:/etc/nginx/ssl
+    depends_on:
+      - portal
