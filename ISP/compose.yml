@@ -6,11 +6,15 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
+    networks:
+      - first_network
 
   portal:
     build: ./portal
     container_name: portal
     image: portal:pop
+    networks:
+      - first_network
 
   proxy:
     build: ./proxy
@@ -23,3 +27,20 @@ services:
       - ./proxy/certs:/etc/nginx/ssl
     depends_on:
       - portal
+    networks:
+      - first_network
+    
+  e-mail:
+    build: ./email
+    container_name: email
+    image: email:pop
+    ports:
+    - "25:25/tcp"
+    - "587:587/tcp"
+    networks:
+      - first_network
+
+  networks:
+    first_network:
+      driver: bridge
+      

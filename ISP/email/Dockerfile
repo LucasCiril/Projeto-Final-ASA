@@ -1,0 +1,16 @@
+FROM ubuntu:latest
+
+RUN apt update
+
+RUN apt upgrade -y
+
+RUN apt install postfix  dovecot-imapd dovecot-pop3d -y
+
+RUN apt install -q -y syslog-ng
+
+COPY main.cf /etc/postfix
+
+RUN useradd -m cirilo
+RUN echo "cirilo:redes"|chpasswd
+
+CMD ["sh", "-c", "service syslog-ng start ; service postfix start ; service dovecot start; tail -F /var/log/mail.log"]
