@@ -5,7 +5,7 @@ RUN apt update -y && apt install bind9 dnsutils -y
 RUN mkdir -p /etc/bind && chown -R bind:bind /etc/bind
 
 COPY named.conf.local /etc/bind/
-COPY db.francisco.br /etc/bind/
+COPY db.asa.br /etc/bind/
 
 EXPOSE 53/tcp
 EXPOSE 53/udp
