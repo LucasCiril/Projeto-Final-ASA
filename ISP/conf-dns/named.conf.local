@@ -1,4 +1,4 @@
 zone "asa.br"{
     type master;
-    file "/etc/bind/db.francisco.br";
+    file "/etc/bind/db.asa.br";
 };

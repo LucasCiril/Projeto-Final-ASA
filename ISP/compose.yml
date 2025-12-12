@@ -22,11 +22,10 @@ services:
     image: server-proxy:pop
     ports:
       - "80:80/tcp"
-      - "443:443/tcp"
-    volumes:
-      - ./proxy/certs:/etc/nginx/ssl
     depends_on:
       - portal
+      - webmail
+      - e-mail
     networks:
       - first_network
     
@@ -37,10 +36,22 @@ services:
     ports:
     - "25:25/tcp"
     - "587:587/tcp"
+    - "110:110/tcp"
+    - "995:995/tcp"
+    - "143:143/tcp"
+    - "993:993/tcp"
+    networks:
+      - first_network
+  
+  webmail:
+    build: ./webmail
+    container_name: webmail
+    image: webmail:pop
+    depends_on:
+      - e-mail
     networks:
       - first_network
 
-  networks:
+networks:
     first_network:
       driver: bridge
-      
