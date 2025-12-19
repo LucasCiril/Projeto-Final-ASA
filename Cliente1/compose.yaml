@@ -1,0 +1,35 @@
+services:
+  portais:
+    build: ./Portal
+    container_name: portais
+    networks:
+      - cliente1-interna
+
+  hostsite:
+    build: ./Hostsite
+    container_name: hostsite
+    networks:
+      - cliente1-interna
+
+  sign:
+    build: ./Sign
+    container_name: sign
+    networks:
+      - cliente1-interna
+
+  proxy:
+    build: ./proxy
+    container_name: cliente1-proxy
+    depends_on:
+      - portais
+      - sign
+      - hostsite
+    networks:
+      - isp-cliente1-link
+      - cliente1-interna
+
+networks:
+  isp-cliente1-link:
+    external: true
+  cliente1-interna:
+    external: true
