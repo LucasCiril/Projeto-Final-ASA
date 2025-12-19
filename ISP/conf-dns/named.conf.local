@@ -2,3 +2,8 @@ zone "asa.br"{
     type master;
     file "/etc/bind/db.asa.br";
 };
+
+zone "sova.br"{
+    type master;
+    file "/etc/bind/db.sova.br";
+};

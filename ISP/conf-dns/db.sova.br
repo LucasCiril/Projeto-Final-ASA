@@ -8,10 +8,7 @@ $TTL	604800
 ;
 @		IN	NS	ns.
 ns		IN  A	10.24.22.239
-@		IN  MX 10 mail.asa.br.
 
-www	    IN	A	10.24.22.239
-mail	IN  A   10.24.22.239
-portal  IN  CNAME www
-webmail IN  CNAME www
-proxy	IN  CNAME www
+portal  IN  A   10.24.22.239
+hostsite IN  A   10.24.22.239
+sign    IN  A   10.24.22.239
