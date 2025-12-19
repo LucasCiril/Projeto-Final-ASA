@@ -1,5 +1,5 @@
 $TTL	604800
-@	IN	SOA	ns.asa.br. root.asa.br. (
+@	IN	SOA	ns.sova.br. root.sova.br. (
 			      1		; Serial
 			 604800		; Refresh
 			  86400		; Retry
@@ -12,3 +12,4 @@ ns		IN  A	10.24.22.239
 portal  IN  A   10.24.22.239
 hostsite IN  A   10.24.22.239
 sign    IN  A   10.24.22.239
+api		IN  A	10.24.22.239
