@@ -11,19 +11,37 @@ services:
     networks:
       - cliente1-interna
 
-  sign:
-    build: ./Sign
-    container_name: sign
+  signapp-db:
+    image: postgres:15
+    container_name: signapp-db
+    environment:
+      POSTGRES_DB: docsign_db
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbuserpass123
     networks:
       - cliente1-interna
+
+  sign-api:
+    image: salesfilho/sign-api:latest
+    container_name: cliente1-sign-api
+    depends_on:
+    - signapp-db
+    networks:
+    - cliente1-interna
+  
+  sign-app:
+    image: salesfilho/sign-app:latest
+    container_name: cliente1-sign-app
+    networks:
+     - cliente1-interna
 
   proxy:
     build: ./proxy
     container_name: cliente1-proxy
     depends_on:
-      - portais
-      - sign
-      - hostsite
+      - sign-api
+      - sign-app
+      - signapp-db
     networks:
       - isp-cliente1-link
       - cliente1-interna
