@@ -26,6 +26,7 @@ services:
     networks:
       - isp-interna
       - isp-cliente1-link
+      - isp-cliente2-link
     
   #e-mail:
     #build: ./email
@@ -54,4 +55,6 @@ networks:
   isp-interna:
     external: true
   isp-cliente1-link:
+    external: true
+  isp-cliente2-link:
     external: true
