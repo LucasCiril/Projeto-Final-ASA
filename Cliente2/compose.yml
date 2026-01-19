@@ -1,0 +1,17 @@
+services:
+  proxy:
+    build: ./proxy
+    container_name: cliente2-proxy
+    networks:
+      - isp-cliente2-link
+      - cliente2-interna
+  
+  raze:
+    build: ./raze
+    container_name: 
+
+networks:
+  isp-cliente2-link:
+    external: true
+  cliente2-interna:
+    external: true
