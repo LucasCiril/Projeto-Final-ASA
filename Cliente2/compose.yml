@@ -8,7 +8,9 @@ services:
   
   raze:
     build: ./raze
-    container_name: 
+    container_name: raze
+    networks:
+      - cliente2-interna
 
 networks:
   isp-cliente2-link:
