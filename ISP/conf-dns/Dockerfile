@@ -7,6 +7,7 @@ RUN mkdir -p /etc/bind && chown -R bind:bind /etc/bind
 COPY named.conf.local /etc/bind/
 COPY db.asa.br /etc/bind/
 COPY db.sova.br /etc/bind/
+COPY db.jett.br /etc/bind/
 
 EXPOSE 53/tcp
 EXPOSE 53/udp

@@ -7,3 +7,8 @@ zone "sova.br"{
     type master;
     file "/etc/bind/db.sova.br";
 };
+
+zone "jett.br"{
+    type master;
+    file "/etc/bind/db.jett.br";
+};
