@@ -2,6 +2,9 @@ services:
   proxy:
     build: ./proxy
     container_name: cliente2-proxy
+    depends_on:
+      - wordpress
+      - raze
     networks:
       - isp-cliente2-link
       - cliente2-interna
@@ -11,9 +14,43 @@ services:
     container_name: raze
     networks:
       - cliente2-interna
+  
+  wordpress:
+    image: wordpress:latest
+    container_name: cliente2-wordpress
+    environment:
+      WORDPRESS_DB_HOST: wp-db
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppassword
+      WORDPRESS_DB_NAME: wpdatabase
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME','http://killjoy.jett.br');
+        define('WP_SITEURL','http://killjoy.jett.br');
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - cliente2-interna
+    depends_on:
+      - wp-db
 
+  wp-db:
+    image: mysql:5.7
+    container_name: cliente2-wp-db
+    environment:
+      MYSQL_DATABASE: wpdatabase
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wppassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - wp_db_data:/var/lib/mysql
+    networks:
+      - cliente2-interna
 networks:
   isp-cliente2-link:
     external: true
   cliente2-interna:
     external: true
+
+volumes:
+  wp_db_data:
+  wp_data:
