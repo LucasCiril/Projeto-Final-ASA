@@ -19,6 +19,7 @@ services:
     container_name: isp-proxy
     ports:
       - "80:80/tcp"
+      - "443:443/tcp"
     depends_on:
       - portal
       #- webmail
@@ -26,8 +27,7 @@ services:
     networks:
       - isp-interna
       - isp-cliente1-link
-      - isp-cliente2-link
-    
+      - isp-cliente2-link  
   #e-mail:
     #build: ./email
     #container_name: email
