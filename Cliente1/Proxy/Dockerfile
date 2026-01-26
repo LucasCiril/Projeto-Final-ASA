@@ -1,5 +1,5 @@
 FROM nginx:latest
 
-RUN mkdir -p /usr/share/nginx/proxy
+COPY default.conf /etc/nginx/conf.d/default.conf
 
-COPY default.conf /etc/nginx/conf.d
+EXPOSE 80
