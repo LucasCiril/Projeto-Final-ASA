@@ -1,0 +1,56 @@
+services:
+  proxy:
+    build: ./proxy
+    container_name: cliente3-proxy
+    depends_on:
+      - wordpress3
+      - yoru
+    networks:
+      - isp-cliente3-link
+      - cliente3-interna
+      
+  yoru:
+    build: ./yoru
+    container_name: yoru
+    networks:
+      - cliente3-interna
+  
+  wordpress3:
+    image: wordpress:latest
+    container_name: cliente3-wordpress
+    environment:
+      WORDPRESS_DB_HOST: wp-db3
+      WORDPRESS_DB_USER: wpuser3
+      WORDPRESS_DB_PASSWORD: wppassword3
+      WORDPRESS_DB_NAME: wpdatabase3
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME','http://skye.viper.br');
+        define('WP_SITEURL','http://skye.viper.br');
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - cliente3-interna
+    depends_on:
+      - wp-db3
+
+  wp-db3:
+    image: mysql:5.7
+    container_name: cliente3-wp-db
+    environment:
+      MYSQL_DATABASE: wpdatabase3
+      MYSQL_USER: wpuser3
+      MYSQL_PASSWORD: wppassword3
+      MYSQL_ROOT_PASSWORD: rootpassword3
+    volumes:
+      - wp_db_data3:/var/lib/mysql
+    networks:
+      - cliente3-interna
+networks:
+  isp-cliente3-link:
+    external: true
+  cliente3-interna:
+    external: true
+
+volumes:
+  wp_db_data3:
+  wp_data:

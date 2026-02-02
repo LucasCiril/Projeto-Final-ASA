@@ -12,3 +12,8 @@ zone "jett.br"{
     type master;
     file "/etc/bind/db.jett.br";
 };
+
+zone "viper.br"{
+    type master;
+    file "/etc/bind/db.viper.br";
+};

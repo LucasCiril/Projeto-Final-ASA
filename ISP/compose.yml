@@ -28,6 +28,7 @@ services:
       - isp-interna
       - isp-cliente1-link
       - isp-cliente2-link  
+      - isp-cliente3-link
   #e-mail:
     #build: ./email
     #container_name: email
@@ -57,4 +58,6 @@ networks:
   isp-cliente1-link:
     external: true
   isp-cliente2-link:
+    external: true
+  isp-cliente3-link:
     external: true

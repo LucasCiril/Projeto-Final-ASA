@@ -30,6 +30,10 @@ DNS.4 = *.sova.br
 DNS.5 = jett.br
 DNS.6 = *.jett.br
 
+# Zona Cliente 3
+DNS.7 = viper.br
+DNS.8 = *.viper.br
+
 # Acessos locais / testes
 DNS.7 = localhost
 IP.1  = 127.0.0.1

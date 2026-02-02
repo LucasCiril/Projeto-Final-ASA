@@ -1,5 +1,5 @@
 $TTL	604800
-@	IN	SOA	ns.sova.br. root.sova.br. (
+@	IN	SOA	ns.viper.br. root.viper.br. (
 			      1		; Serial
 			 604800		; Refresh
 			  86400		; Retry
@@ -9,7 +9,5 @@ $TTL	604800
 @		IN	NS	ns.
 ns		IN  A	10.24.18.21
 
-portal  IN  A   10.24.18.21
-hostsite IN  A   10.24.18.21
-sign    IN  A   10.24.18.21
-api		IN  A	10.24.18.21
+yoru    IN  A   10.24.18.21
+skye    IN  A   10.24.18.21
