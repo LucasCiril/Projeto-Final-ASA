@@ -1,0 +1,48 @@
+[06-Feb-2026 13:20:04 +0000]: <8c0e8842> Connecting to mail.asa.br:587...
+[06-Feb-2026 13:21:23 +0000]: <dc4a392f> Connecting to mail.asa.br:587...
+[06-Feb-2026 13:21:45 +0000]: <dc4a392f> Connecting to mail.asa.br:587...
+[06-Feb-2026 13:35:00 +0000]: <a64a3487> Connecting to mail.asa.br:587...
+[06-Feb-2026 13:35:21 +0000]: <a64a3487> Connecting to mail.asa.br:587...
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Connecting to mail.asa.br:587...
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 220 mail.asa.br ESMTP
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: EHLO mail.asa.br
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-mail.asa.br
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-PIPELINING
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-SIZE 10240000
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-VRFY
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-ETRN
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-AUTH PLAIN LOGIN
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-ENHANCEDSTATUSCODES
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-8BITMIME
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-DSN
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250-SMTPUTF8
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250 CHUNKING
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: AUTH LOGIN
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 334 VXNlcm5hbWU6
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: Y2lyaWxv
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 334 UGFzc3dvcmQ6
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: ****** [8]
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 235 2.7.0 Authentication successful
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: MAIL FROM:<cirilo@mail.asa.br>
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250 2.1.0 Ok
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: RCPT TO:<lucas@mail.asa.br>
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250 2.1.5 Ok
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: DATA
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 354 End data with <CR><LF>.<CR><LF>
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: MIME-Version: 1.0
+Date: Fri, 06 Feb 2026 10:39:37 -0300
+From: cirilo <cirilo@mail.asa.br>
+To: lucas@mail.asa.br
+Subject: =?UTF-8?Q?Teste_N=C2=BA_133?=
+Message-ID: <f2e7432e908cc2c0ef08d943b209cb29@mail.asa.br>
+X-Sender: cirilo@mail.asa.br
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+
+É O CALDEIRÃAAAAAAAO, VOU TORCER PRA FURIA SER CAMPEÃAAAAA
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: 
+.
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 250 2.0.0 Ok: queued as 791C8259A8
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Send: QUIT
+[06-Feb-2026 13:39:38 +0000]: <5ca46fd3> Recv: 221 2.0.0 Bye
