@@ -35,5 +35,5 @@ DNS.7 = viper.br
 DNS.8 = *.viper.br
 
 # Acessos locais / testes
-DNS.7 = localhost
+DNS.9 = localhost
 IP.1  = 127.0.0.1
